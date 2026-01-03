@@ -23,10 +23,8 @@ export async function POST(request: Request) {
       throw new Error("Failed to add to Google Sheets")
     }
 
-    /* ✅ SEND EMAIL (NON-BLOCKING) */
-    sendWelcomeEmail({ name, email }).catch((err) =>
-      console.error("[Email Error]", err)
-    )
+    // 🔥 MUST AWAIT EMAIL ON VERCEL
+    await sendWelcomeEmail({ name, email })
 
     return NextResponse.json({
       success: true,
@@ -40,6 +38,7 @@ export async function POST(request: Request) {
     )
   }
 }
+
 
 async function addToGoogleSheets(data: {
   name: string
