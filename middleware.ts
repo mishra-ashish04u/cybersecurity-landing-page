@@ -2,15 +2,12 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+  return NextResponse.redirect(
+    new URL("/launchpad", request.url),
+    308
+  )
+}
 
-  // Redirect root "/" to "/launchpad"
-  if (pathname === "/") {
-    return NextResponse.redirect(
-      new URL("/launchpad", request.url),
-      301
-    )
-  }
-
-  return NextResponse.next()
+export const config = {
+  matcher: ["/"],
 }
