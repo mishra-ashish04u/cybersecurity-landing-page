@@ -87,16 +87,19 @@ async function sendWelcomeEmail(data: { name: string; email: string }) {
   console.log("SMTP_USER:", process.env.SMTP_USER)
   console.log("SMTP_PASS:", process.env.SMTP_PASS ? "LOADED" : "MISSING")
 
-  const transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
     host: "smtp.hostinger.com",
-    port: 587,
-    secure: false,        // 🔥 IMPORTANT
-    requireTLS: true,     // 🔥 IMPORTANT
+    port: 465,              // SSL
+    secure: true,           // MUST be true for 465
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
     },
+    tls: {
+      rejectUnauthorized: false, // IMPORTANT for Vercel
+    },
   })
+
 
 
   /* ✅ VERIFY SMTP */
