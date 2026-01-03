@@ -105,7 +105,7 @@ async function sendWelcomeEmail(data: { name: string; email: string }) {
   await transporter.verify()
 
   const mailOptions = {
-    from: `"Sanjay - Cybersecurity Mentor" <${process.env.SMTP_USER}>`,
+    from: `"Cyber Sanjay" <${process.env.SMTP_USER}>`,
     to: data.email,
     subject: "Welcome to Your Cybersecurity Journey! 🔐",
     html: `
