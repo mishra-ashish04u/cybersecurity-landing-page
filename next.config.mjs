@@ -4,16 +4,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/newsletter",
-        permanent: true, // 301 redirect (SEO friendly)
-      },
-    ]
-  },
 }
 
 export default nextConfig
