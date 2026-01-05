@@ -117,7 +117,7 @@ async function sendWelcomeEmail(data: { name: string; email: string }) {
           <title>Welcome to Your Cybersecurity Journey</title>
         </head>
 
-        <body style="margin:0; padding:0; background-color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color:#334155;">
+        <body style="margin:0; padding:0; background-color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; color:#334155;">
 
           <table width="100%" cellpadding="0" cellspacing="0" style="padding:30px 0; background-color:#f8fafc;">
             <tr>
@@ -148,7 +148,7 @@ async function sendWelcomeEmail(data: { name: string; email: string }) {
                       </p>
 
                       <p>
-                        We’ll notify you as soon as we launch.
+                        We’ll notify you as soon as we launch with exclusive resources, updates, and offers.
                       </p>
 
                       <!-- Signature -->
@@ -158,6 +158,59 @@ async function sendWelcomeEmail(data: { name: string; email: string }) {
                           <span style="color:#64748b;">Cybersecurity Mentor</span>
                         </p>
                       </div>
+
+                    </td>
+                  </tr>
+
+                  <!-- Social Section -->
+                  <tr>
+                    <td align="center" style="padding:24px 20px; background:#f8fafc;">
+
+                      <p style="margin:0 0 14px 0; font-size:15px; font-weight:600; color:#1e293b;">
+                        Contact us on Social for updates 🚀
+                      </p>
+
+                      <table cellpadding="0" cellspacing="0">
+                        <tr>
+
+                          <!-- WhatsApp -->
+                          <td style="padding: 0 12px;">
+                            <a href="https://whatsapp.com/channel/0029Vb7dfiDD38CXfUkLz00b" target="_blank">
+                              <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                                width="36"
+                                alt="WhatsApp"
+                                style="display:block;"
+                              />
+                            </a>
+                          </td>
+
+                          <!-- Telegram -->
+                          <td style="padding: 0 12px;">
+                            <a href="https://t.me/icybersanjay" target="_blank">
+                              <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+                                width="36"
+                                alt="Telegram"
+                                style="display:block;"
+                              />
+                            </a>
+                          </td>
+
+                          <!-- LinkedIn -->
+                          <td style="padding: 0 12px;">
+                            <a href="https://www.linkedin.com/in/sanjay70023" target="_blank">
+                              <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+                                width="36"
+                                alt="LinkedIn"
+                                style="display:block;"
+                              />
+                            </a>
+                          </td>
+
+                        </tr>
+                      </table>
 
                     </td>
                   </tr>
@@ -177,8 +230,7 @@ async function sendWelcomeEmail(data: { name: string; email: string }) {
 
         </body>
       </html>
-
-    `,
+      `,
   }
 
   try {
