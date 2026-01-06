@@ -1,31 +1,77 @@
 "use client"
 
 import type React from "react"
+import { useState, useEffect } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Shield, Lock, Rocket, CheckCircle2, FileText, Users, AlertTriangle, Pizza, Heart, Send } from "lucide-react"
-import { useState, useEffect } from "react"
+import {
+  Shield,
+  Lock,
+  Rocket,
+  CheckCircle2,
+  FileText,
+  Users,
+  AlertTriangle,
+  Pizza,
+  Heart,
+  Send,
+} from "lucide-react"
 
 export default function CyberSecurityLaunchPage() {
+  const START_COUNT = 1
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     status: "",
   })
-  const [learnerCount, setLearnerCount] = useState(17)
+
+  const [learnerCount, setLearnerCount] = useState<number>(START_COUNT)
+  const [targetCount, setTargetCount] = useState<number | null>(null)
+
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // 🔹 Fetch real visitor count (once on page load)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLearnerCount((prev) => prev + Math.floor(Math.random() * 3))
-    }, 5000)
-    return () => clearInterval(interval)
+    const fetchVisitors = async () => {
+      try {
+        const res = await fetch("/api/visit")
+        const data = await res.json()
+        setTargetCount(data.visitors)
+      } catch (error) {
+        console.error("Failed to fetch visitor count")
+      }
+    }
+
+    fetchVisitors()
   }, [])
 
+  // 🔹 Animate from 1 → real visitor count
+  useEffect(() => {
+    if (targetCount === null) return
+
+    let current = START_COUNT
+    const increment = Math.max(1, Math.floor((targetCount - START_COUNT) / 30))
+
+    const interval = setInterval(() => {
+      current += increment
+
+      if (current >= targetCount) {
+        current = targetCount
+        clearInterval(interval)
+      }
+
+      setLearnerCount(current)
+    }, 30)
+
+    return () => clearInterval(interval)
+  }, [targetCount])
+
+  // 🔹 Form submit (NO visitor count logic here)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -33,18 +79,13 @@ export default function CyberSecurityLaunchPage() {
     try {
       const response = await fetch("/api/submit-form", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
 
-      if (!response.ok) {
-        throw new Error("Failed to submit form")
-      }
+      if (!response.ok) throw new Error("Failed to submit form")
 
       setSubmitted(true)
-      setLearnerCount((prev) => prev + 1)
     } catch (error) {
       console.error("Error submitting form:", error)
       alert("There was an error submitting your form. Please try again.")
@@ -68,14 +109,19 @@ export default function CyberSecurityLaunchPage() {
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-600 text-balance max-w-2xl mx-auto">
-            A beginner-friendly 7-day ethical hacking starter kit + cybersecurity resume booster pack — launching soon.
+            A beginner-friendly 7-day ethical hacking starter kit + cybersecurity
+            resume booster pack — launching soon.
           </p>
 
           <div className="pt-4">
             <Button
               size="lg"
               className="bg-[#ffda6a] hover:bg-[#ffd04a] text-slate-900 font-semibold px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
-              onClick={() => document.getElementById("early-access")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .getElementById("early-access")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Get Early Access
               <Rocket className="ml-2 w-5 h-5" />

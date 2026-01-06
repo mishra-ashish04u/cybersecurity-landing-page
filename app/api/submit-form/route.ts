@@ -177,7 +177,7 @@ async function sendWelcomeEmail(data: { name: string; email: string }) {
                           <td style="padding: 0 12px;">
                             <a href="https://whatsapp.com/channel/0029Vb7dfiDD38CXfUkLz00b" target="_blank">
                               <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/256px-WhatsApp.svg.png"
                                 width="36"
                                 alt="WhatsApp"
                                 style="display:block;"
@@ -189,7 +189,7 @@ async function sendWelcomeEmail(data: { name: string; email: string }) {
                           <td style="padding: 0 12px;">
                             <a href="https://t.me/icybersanjay" target="_blank">
                               <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/256px-Telegram_logo.svg.png"
                                 width="36"
                                 alt="Telegram"
                                 style="display:block;"
